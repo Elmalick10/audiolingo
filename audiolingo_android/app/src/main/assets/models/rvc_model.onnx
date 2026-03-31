@@ -1,2 +1,0 @@
-let rvc_session = SessionBuilder::new(&env)?.with_model_from_file("assets/models/rvc_model.onnx")?;
-let cloned_voice = rvc_session.run(&[source_voice_pcm, target_embedding])?;
