@@ -52,3 +52,9 @@ target/
 # OS
 .DS_Store
 Thumbs.db
+
+ai/Wav2Lip/
+whisper.cpp/
+vosk-api/
+rnnoise/
+natif/
