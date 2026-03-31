@@ -72,3 +72,8 @@ audiolingo_android/caches/
 # Python cache
 __pycache__/
 *.pyc
+
+# Android
+.gradle/
+**/build/
+**/caches/
