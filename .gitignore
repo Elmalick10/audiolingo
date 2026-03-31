@@ -57,4 +57,5 @@ ai/Wav2Lip/
 whisper.cpp/
 vosk-api/
 rnnoise/
-natif/
+native/
+audiolingo_android/app/src/main/cpp/
