@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/audiolingo_android/app/src/main/cpp/ggml" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/audiolingo_android/app/src/main/cpp/ncnn" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/audiolingo_android/app/src/main/cpp/rnnoise" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/audiolingo_android/app/src/main/cpp/whisper/whisper.cpp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/audiolingo_android/rust" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/audiolingo_core/models/demucs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/native/whisper" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ncnn" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oboe" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rnnoise" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vosk-api" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/whisper" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/whisper.cpp" vcs="Git" />
+  </component>
+</project>

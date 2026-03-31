@@ -1,0 +1,19 @@
+[package]
+name = "audiolingo_core"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "audiolingo_core"
+crate-type = ["cdylib"]
+
+[dependencies]
+tokio = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+serde = { workspace = true }
+rodio = "0.17"
+
+[target.'cfg(not(target_os = "android"))'.dependencies]
+whisper-rs = "0.15"

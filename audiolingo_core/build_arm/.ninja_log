@@ -1,0 +1,4 @@
+# ninja log v7
+22	1030	7961111904877153	build.ninja	77ae3d3925981803
+4	205	7961118502416951	CMakeFiles/audiolingo_core.dir/core.cpp.o	bc410c70d30106ee
+208	492	7961118504452676	libaudiolingo_core.so	c5a474545d4a2d20

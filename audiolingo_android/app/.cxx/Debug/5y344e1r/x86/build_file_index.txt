@@ -1,0 +1,1 @@
+C:\audiolingo\audiolingo_android\app\src\main\cpp\CMakeLists.txt

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AudioLingo AI PRO MAX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-black text-white">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center p-4 bg-black/50 backdrop-blur">
+  <h1 class="text-2xl font-bold">🔥 AudioLingo AI</h1>
+  <button onclick="logout()" class="bg-red-500 px-3 py-1 rounded">Logout</button>
+</nav>
+
+<!-- DASHBOARD -->
+<div class="p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+  <!-- SIDEBAR -->
+  <div class="bg-gray-800 p-4 rounded-2xl">
+    <button onclick="showTab('editor')">🎬 Editor</button><br>
+    <button onclick="showTab('analytics')">📊 Analytics</button><br>
+    <button onclick="showTab('billing')">💳 Billing</button>
+  </div>
+
+  <!-- MAIN -->
+  <div class="lg:col-span-3">
+
+    <!-- EDITOR -->
+    <div id="editor" class="tab">
+      <h2 class="text-xl mb-4">🎬 Éditeur Drag & Drop</h2>
+      
+      <input type="file" onchange="addClip(event)" class="mb-4">
+      
+      <div id="timeline" class="flex space-x-2 bg-gray-800 p-4 rounded overflow-x-auto"></div>
+      
+      <video id="preview" controls class="mt-4 w-full rounded"></video>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div id="analytics" class="tab hidden">
+      <h2 class="text-xl mb-4">📊 Analytics Live</h2>
+      <canvas id="chart"></canvas>
+    </div>
+
+    <!-- BILLING -->
+    <div id="billing" class="tab hidden">
+      <h2 class="text-xl mb-4">💳 Abonnement</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <div class="bg-gray-800 p-4 rounded">
+          <h3>Basic</h3>
+          <p>5€/mois</p>
+          <button onclick="subscribe(5)" class="bg-blue-500 px-3 py-2">Choisir</button>
+        </div>
+
+        <div class="bg-gray-800 p-4 rounded border-2 border-yellow-500">
+          <h3>Pro</h3>
+          <p>15€/mois</p>
+          <button onclick="subscribe(15)" class="bg-yellow-500 px-3 py-2">Choisir</button>
+        </div>
+
+        <div class="bg-gray-800 p-4 rounded">
+          <h3>Ultra</h3>
+          <p>30€/mois</p>
+          <button onclick="subscribe(30)" class="bg-purple-500 px-3 py-2">Choisir</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+// JWT AUTH
+function logout(){
+  localStorage.removeItem("token")
+  location.reload()
+}
+
+function getToken(){
+  return localStorage.getItem("token")
+}
+
+// NAVIGATION
+function showTab(id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.add('hidden'))
+  document.getElementById(id).classList.remove('hidden')
+}
+
+// EDITOR DRAG DROP
+let clips = []
+
+function addClip(e){
+  const file = e.target.files[0]
+
+  const url = URL.createObjectURL(file)
+
+  clips.push(url)
+  renderTimeline()
+}
+
+function renderTimeline(){
+
+  const timeline = document.getElementById("timeline")
+  timeline.innerHTML = ""
+
+  clips.forEach((c, i)=>{
+
+    const div = document.createElement("div")
+    div.className = "bg-blue-500 p-2 cursor-move"
+    div.draggable = true
+    div.innerText = "Clip " + (i+1)
+
+    div.ondragstart = ()=>dragIndex=i
+    div.ondrop = ()=>swap(i)
+    div.ondragover = (e)=>e.preventDefault()
+
+    timeline.appendChild(div)
+  })
+
+  if(clips.length>0){
+    document.getElementById("preview").src = clips[0]
+  }
+}
+
+let dragIndex
+
+function swap(i){
+  const temp = clips[i]
+  clips[i] = clips[dragIndex]
+  clips[dragIndex] = temp
+  renderTimeline()
+}
+
+// ANALYTICS LIVE
+const ctx = document.getElementById('chart')
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Lun','Mar','Mer','Jeu','Ven'],
+    datasets: [{ data: [5,10,8,15,20] }]
+  }
+})
+
+// BILLING
+function subscribe(amount){
+  fetch("http://localhost:5000/pay",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({amount})
+  })
+  alert("Paiement lancé 💳")
+}
+
+</script>
+
+</body>
+</html>

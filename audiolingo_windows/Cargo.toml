@@ -1,0 +1,8 @@
+[package]
+name = "audiolingo_windows"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+audiolingo_core = { path = "../audiolingo_core" }
+cpal = "0.15"

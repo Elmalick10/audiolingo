@@ -1,0 +1,13 @@
+[package]
+name = "audiolingo_android"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+jni = { workspace = true }
+tokio = { workspace = true }
+
+audiolingo_core = { path = "../../core" }

@@ -1,0 +1,8 @@
+# ninja log v5
+1	1331	7960925298964207	CMakeFiles/native-lib.dir/native-lib.cpp.o	1ea5b2c5497e42ce
+1335	1877	7960925304356731	C:/audiolingo/audiolingo_android/app/build/intermediates/cxx/Debug/5y344e1r/obj/x86/libnative-lib.so	705bc3dde43a1a08
+0	15	0	clean	60d4c721cfa9bb2
+17	2886	7960929641001930	CMakeFiles/native-lib.dir/native-lib.cpp.o	1ea5b2c5497e42ce
+2887	3748	7960929650011943	C:/audiolingo/audiolingo_android/app/build/intermediates/cxx/Debug/5y344e1r/obj/x86/libnative-lib.so	705bc3dde43a1a08
+9	1511	7960943386442119	CMakeFiles/native-lib.dir/native-lib.cpp.o	1ea5b2c5497e42ce
+1512	2212	7960943393280542	C:/audiolingo/audiolingo_android/app/build/intermediates/cxx/Debug/5y344e1r/obj/x86/libnative-lib.so	705bc3dde43a1a08

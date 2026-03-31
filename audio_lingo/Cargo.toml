@@ -1,0 +1,14 @@
+[package]
+name = "audio_lingo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cpal = "0.17"           # accès micro et speaker
+vosk = "0.3"            # STT local
+tts = { version = "0.5", features = ["direct_audio"] }  # TTS avec sortie directe
+hound = "3.4"           # optionnel pour WAV, si besoin de debug
+whatlang = "0.13"
+vosk = "0.2"
+cpal = "0.15"
+eframe = "0.27"

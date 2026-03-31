@@ -1,0 +1,16 @@
+[package]
+name = "voice_assistant"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tts = "0.9"            # Text-to-Speech offline
+whatlang = "0.13"      # Détection de langue
+cpal = "0.14"          # Micro et sortie audio
+rodio = "0.17"         # Lecture audio
+whisper-rs = "0.6"     # Reconnaissance vocale
+anyhow = "1.0"         # Gestion d’erreurs
+chrono = "0.4"
+eframe = "0.27"
+egui = "0.27"
+cpal = "0.15"

@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gradle",
+			"id": "c:\\audiolingo\\audiolingo_androidprojectsaudiolingo_android",
+			"script": "projects",
+			"description": "Displays the sub-projects of root project 'audiolingo_android'.",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"project": "audiolingo_android",
+			"buildFile": "C:\\audiolingo\\audiolingo_android\\build.gradle",
+			"rootProject": "audiolingo_android",
+			"projectFolder": "c:\\audiolingo\\audiolingo_android",
+			"workspaceFolder": "c:\\audiolingo\\audiolingo_android",
+			"args": "",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: projects"
+		}
+	]
+}

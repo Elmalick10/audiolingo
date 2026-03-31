@@ -1,0 +1,5 @@
+[target.armv7-linux-androideabi]
+linker = "C:\\Users\\HP\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.cmd"
+
+[target.aarch64-linux-android]
+linker = "C:\\Users\\HP\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.cmd"

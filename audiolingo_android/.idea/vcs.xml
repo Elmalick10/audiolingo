@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/app/src/main/cpp/ggml" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/src/main/cpp/ncnn" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/src/main/cpp/rnnoise" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/src/main/cpp/whisper/whisper.cpp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rust" vcs="Git" />
+  </component>
+</project>

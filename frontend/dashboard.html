@@ -1,0 +1,20 @@
+<button onclick="pay('paypal')">Payer avec PayPal</button>
+<button onclick="pay('cinetpay')">Payer avec CinetPay</button>
+
+async function pay(method) {
+
+    const res = await fetch("http://localhost:5000/pay", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            method: method,
+            amount: 10
+        })
+    })
+
+    const data = await res.json()
+
+    console.log(data)
+
+    // redirection vers paiement
+}

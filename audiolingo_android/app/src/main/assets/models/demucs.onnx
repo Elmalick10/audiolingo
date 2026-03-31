@@ -1,0 +1,4 @@
+use onnxruntime::{environment::Environment, session::SessionBuilder};
+
+let env = Environment::builder().with_name("AudioLingo").build()?;
+let session = SessionBuilder::new(&env)?.with_model_from_file("assets/models/demucs.onnx")?;

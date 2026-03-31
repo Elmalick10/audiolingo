@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+
+members = [
+"audiolingo_core",
+"audiolingo_windows",
+"audiolingo_tv"
+]

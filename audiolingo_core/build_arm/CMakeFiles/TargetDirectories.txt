@@ -1,0 +1,3 @@
+C:/audiolingo/audiolingo_core/build_arm/CMakeFiles/audiolingo_core.dir
+C:/audiolingo/audiolingo_core/build_arm/CMakeFiles/edit_cache.dir
+C:/audiolingo/audiolingo_core/build_arm/CMakeFiles/rebuild_cache.dir

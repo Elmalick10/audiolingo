@@ -1,0 +1,8 @@
+flask
+onnxruntime
+numpy
+fastapi
+uvicorn
+python-multipart
+redis
+celery

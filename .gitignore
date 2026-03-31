@@ -1,0 +1,54 @@
+# ========================
+# ENV (SECRETS)
+# ========================
+.env
+.env.*
+
+# ========================
+# PYTHON
+# ========================
+__pycache__/
+*.pyc
+.venv/
+
+# ========================
+# OUTPUT (gros fichiers)
+# ========================
+output/
+
+# ========================
+# ANDROID LOCAL CONFIG
+# ========================
+local.properties
+
+# ========================
+# ANDROID gradle CONFIG
+# ========================
+gradle.properties
+
+# ENV
+.env
+
+# Gradle
+.gradle/
+build/
+*/build/
+
+# Android
+gradle.properties
+*.keystore
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Rust
+target/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
