@@ -6,3 +6,6 @@ uvicorn
 python-multipart
 redis
 celery
+requests
+whisper
+torch
