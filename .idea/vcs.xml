@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ai/Wav2Lip" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/audiolingo_android/app/src/main/cpp/ggml" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/audiolingo_android/app/src/main/cpp/ncnn" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/audiolingo_android/app/src/main/cpp/rnnoise" vcs="Git" />

@@ -1,5 +1,10 @@
 package com.example.audiolingo
 
+import com.example.audiolingo.core.AIStubs
+
+val text = AIStubs.transcribe(audio)
+val translated = AIStubs.translate(text)
+
 object AudioPipeline {
 
     fun processStream(audioChunk: ByteArray) {

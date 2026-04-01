@@ -5,13 +5,11 @@ plugins {
 
 android {
     namespace "com.example.audiolingo"
-    compileSdk 34
 
     defaultConfig {
         applicationId "com.audiolingo.app"
         minSdk 24
         targetSdk 34
-
         versionCode 1
         versionName "1.0"
 
@@ -19,6 +17,7 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -33,13 +32,7 @@ android {
             useLegacyPackaging = true
         }
     }
-    buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
-        }
-    }
+
     signingConfigs {
         release {
             storeFile file(MYAPP_RELEASE_STORE_FILE)
@@ -48,29 +41,16 @@ android {
             keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
+
     buildTypes {
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
     }
-    class BillingManager {
 
-        fun startPurchase() {
-            // abonnement mensuel
-            if (checkSubscription()) {
-                // L'utilisateur a un abonnement actif
-                // Accorder l'accès aux fonctionnalités premium
-            } else {
-                // L'utilisateur n'a pas d'abonnement actif
-                // Rediriger vers la page d'achat ou afficher un message d'erreur
-            }
-
-    fun checkSubscription(): Boolean {
-        return true
-    }
-}
     splits {
         abi {
             enable true
@@ -79,24 +59,31 @@ android {
             universalApk true
         }
     }
-    dependencies {
-        implementation 'androidx.core:core-ktx:1.12.0'
-        implementation 'androidx.appcompat:appcompat:1.6.1'
-        implementation 'com.google.android.material:material:1.11.0'
-        implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.17.0'
-            // OkHttp (CinetPay)
-        implementation "com.squareup.okhttp3:okhttp:4.12.0"
+}
 
-        // Firebase Storage
-        implementation "com.google.firebase:firebase-storage:20.3.0"
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation "com.android.billingclient:billing:6.1.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation "com.android.billingclient:billing-ktx:6.1.0"
 
-        // Google Play Update
-        implementation "com.google.android.play:app-update:2.1.0"
+    // IA
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.17.0'
 
-        // FFmpeg
-        implementation "com.arthenica:ffmpeg-kit-full:6.0-2"
-        apply plugin: 'com.google.gms.google-services'
-        implementation "com.microsoft.onnxruntime:onnxruntime-android:1.17.0"
-        }
-    }
+    // Backend API
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Réseau
+    implementation "com.squareup.okhttp3:okhttp:4.12.0"
+
+    // Play Store
+    implementation "com.google.android.play:app-update:2.1.0"
+
+    // Audio processing
+    implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14'
 }

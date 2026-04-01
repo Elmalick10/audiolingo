@@ -1,5 +1,17 @@
 from flask import request, jsonify
 import sqlite3
+from fastapi import APIRouter
+import jwt
+
+router = APIRouter()
+
+SECRET = "SECRET_KEY"
+
+@router.post("/login")
+
+def login():
+    token = jwt.encode({"user_id": 1}, SECRET, algorithm="HS256")
+    return {"token": token}
 
 def register():
 

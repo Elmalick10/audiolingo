@@ -58,4 +58,8 @@ class StreamingClient {
         audioRecord?.release()
         audioRecord = null
     }
+
+    fun sendAudioToServer(audioData: ByteArray) {
+    // envoyer vers backend streaming
+    }
 }
