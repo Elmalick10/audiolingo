@@ -1,4 +1,4 @@
-name: Build APK
+name: Android Build
 
 on:
   push:
@@ -10,25 +10,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Grant permission
+        run: chmod +x gradlew
+
       - name: Build APK
-        run: |
-          cd audiolingo_android
-          ./gradlew assembleRelease
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
-        with:
-          name: app-release
-          path: audiolingo_android/app/build/outputs/apk/release/
-
-          - name: Upload to Play Store
-            run: |
-                echo "Upload via API ici"
+        run: ./gradlew assembleDebug
