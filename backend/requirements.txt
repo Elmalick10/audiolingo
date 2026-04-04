@@ -1,11 +1,7 @@
-flask
-onnxruntime
-numpy
 fastapi
 uvicorn
 python-multipart
-redis
-celery
-requests
+passlib[bcrypt]
+python-jose
 sqlalchemy
-pydantic
+psycopg2-binary

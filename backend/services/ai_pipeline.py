@@ -1,27 +1,16 @@
-# services/ai_pipeline.py
+from services.stt import speech_to_text
+from services.tts import text_to_speech
 
-from ai.whisper_onnx import transcribe_audio
-from ai.tts_coqui import generate_tts
-from ai.wav2lip_engine import generate_lipsync
+async def process_pipeline(text: str):
 
-def process_audio_pipeline(audio_path, target_lang="en", with_video=False):
-    # 1. Speech-to-Text
-    text = transcribe_audio(audio_path)
+    # 🧠 Simulation (remplace par vraie IA plus tard)
+    processed_text = text.upper()
 
-    # 2. Traduction (simple pour l'instant)
-    translated_text = f"[{target_lang}] {text}"
-
-    # 3. Text-to-Speech
-    audio_output = generate_tts(translated_text)
-
-    # 4. Vidéo (optionnel)
-    video_output = None
-    if with_video:
-        video_output = generate_lipsync(audio_output)
+    # 🔊 Génération audio
+    audio_path = text_to_speech(processed_text)
 
     return {
-        "text": text,
-        "translated": translated_text,
-        "audio": audio_output,
-        "video": video_output
+        "input": text,
+        "output": processed_text,
+        "audio": audio_path
     }

@@ -1,15 +1,10 @@
-from sqlalchemy import Column, Integer, String
-from database import engine
-from sqlalchemy.orm import declarative_base
-
-Base = declarative_base()
+from sqlalchemy import Column, Integer, String, Boolean
+from database.db import Base
 
 class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    email = Column(String)
+    email = Column(String, unique=True)
     password = Column(String)
-    plan = Column(String, default="free")
-
-Base.metadata.create_all(engine)
+    is_premium = Column(Boolean, default=False)

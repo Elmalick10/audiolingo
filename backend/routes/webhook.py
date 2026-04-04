@@ -1,14 +1,20 @@
 from fastapi import APIRouter, Request
-from services.subscription_service import activate_subscription
+from database.db import SessionLocal
+from models.user import User
 
 router = APIRouter()
 
 @router.post("/webhook/cinetpay")
-async def cinetpay_webhook(request: Request):
-    data = await request.json()
+async def cinetpay_webhook(req: Request):
+    data = await req.json()
 
-    if data.get("status") == "ACCEPTED":
-        user_id = data.get("customer_id")
-        activate_subscription(user_id)
+    email = data.get("customer_email")  # ⚠️ important
 
-    return {"status": "ok"}
+    db = SessionLocal()
+    user = db.query(User).filter(User.email == email).first()
+
+    if user:
+        user.is_premium = True
+        db.commit()
+
+    return {"status": "premium activated"}

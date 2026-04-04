@@ -1,10 +1,17 @@
 from fastapi import APIRouter
-from database import SessionLocal
+from database.db import SessionLocal
 from models.user import User
 
 router = APIRouter()
 
-@router.get("/admin/users")
-def get_users():
+@router.get("/admin/stats")
+def stats():
     db = SessionLocal()
-    return db.query(User).all()
+
+    total_users = db.query(User).count()
+    premium_users = db.query(User).filter(User.is_premium == True).count()
+
+    return {
+        "total_users": total_users,
+        "premium_users": premium_users
+    }

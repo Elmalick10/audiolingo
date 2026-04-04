@@ -1,19 +1,25 @@
-from fastapi import FastAPI
-from routes import ai, webhook, webhook_paypal
+from fastapi import FastAPI, UploadFile, File
+import shutil
 
 app = FastAPI()
 
-# ROUTES
-app.include_router(ai.router)
-app.include_router(webhook.router)
-app.include_router(webhook_paypal.router)
+@app.post("/ai/process")
+async def process_text(data: dict):
+    text = data.get("text")
+    return {
+        "output": text.upper(),
+        "status": "processed"
+    }
 
-# ROUTE TEST
-@app.get("/")
-def home():
-    return {"message": "AudioLingo API OK"}
+@app.post("/ai/audio")
+async def process_audio(file: UploadFile = File(...)):
+    path = f"temp_{file.filename}"
 
-# ROUTE HEALTH
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+    with open(path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    # TODO: Whisper + TTS
+    return {
+        "output": "audio processed",
+        "status": "ok"
+    }
