@@ -17,6 +17,12 @@ class WhisperStreaming {
             buffer.clear()
 
             return result
+
+        val text = whisperResult
+
+        val processed = sendToBackend(text)
+
+        tts.speak(processed)
         }
 
         return ""

@@ -2,20 +2,20 @@ package com.example.audiolingo.auth
 
 import android.content.Context
 
-class AuthManager(private val context: Context) {
+object AuthManager {
 
-    fun isLoggedIn(): Boolean {
-        val prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE)
-        return prefs.getString("token", null) != null
+    private const val PREF = "auth"
+    private const val KEY_TOKEN = "token"
+
+    fun saveToken(context: Context, token: String) {
+        context.getSharedPreferences(PREF, Context.MODE_PRIVATE)
+            .edit()
+            .putString(KEY_TOKEN, token)
+            .apply()
     }
 
-    fun saveToken(token: String) {
-        val prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE)
-        prefs.edit().putString("token", token).apply()
-    }
-
-    fun getToken(): String? {
-        val prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE)
-        return prefs.getString("token", null)
+    fun getToken(context: Context): String? {
+        return context.getSharedPreferences(PREF, Context.MODE_PRIVATE)
+            .getString(KEY_TOKEN, null)
     }
 }

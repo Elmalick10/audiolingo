@@ -1,5 +1,14 @@
 package com.example.audiolingo.user
 
+import com.example.audiolingo.billing.BillingManager
+
+object UserManager {
+
+    fun isPremium(): Boolean {
+        return BillingManager.isUserPremium()
+        }
+    }
+
 class UserManager {
 
     var isLoggedIn = false
