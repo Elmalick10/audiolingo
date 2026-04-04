@@ -10,3 +10,7 @@ app.include_router(webhook_router)
 @app.get("/")
 def home():
     return {"status": "AudioLingo API running 🚀"}
+
+@app.get("/")
+def home():
+    return {"message": "AudioLingo API OK 🚀"}
