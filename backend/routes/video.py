@@ -1,18 +1,33 @@
-from flask import request, jsonify
-from services.ai_engine import generate_user_content
+from fastapi import APIRouter, UploadFile
+from ai.wav2lip_engine import Wav2LipEngine
+from core.queue import process_video
 
-def create_video():
+@router.post("/generate_async")
+def generate_async():
 
-    data = request.json
-    user_id = data["user_id"]
-    prompt = data["prompt"]
+    process_video.delay("data")
 
-    content = generate_user_content(user_id, prompt)
+    return {
+        "status": "processing"
+    }
 
-    # génération audio + vidéo
-    video_path = generate_avatar(user_id)
+router = APIRouter(prefix="/video", tags=["Video"])
+engine = Wav2LipEngine()
 
-    return jsonify({
-        "video": video_path,
-        "content": content
-    })
+@router.post("/lipsync")
+async def lipsync(face: UploadFile, audio: UploadFile):
+
+    face_path = f"temp/{face.filename}"
+    audio_path = f"temp/{audio.filename}"
+
+    with open(face_path, "wb") as f:
+        f.write(await face.read())
+
+    with open(audio_path, "wb") as f:
+        f.write(await audio.read())
+
+    result = engine.generate(face_path, audio_path)
+
+    return {
+        "video_url": f"https://audiolingo.onrender.com/{result}"
+    }

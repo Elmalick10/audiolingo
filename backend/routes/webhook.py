@@ -1,15 +1,14 @@
-from flask import request
+from fastapi import APIRouter, Request
+from services.subscription_service import activate_subscription
 
-def payment_notify():
+router = APIRouter()
 
-    data = request.json
+@router.post("/webhook/cinetpay")
+async def cinetpay_webhook(request: Request):
+    data = await request.json()
 
-    print("💰 Paiement reçu:", data)
+    if data.get("status") == "ACCEPTED":
+        user_id = data.get("customer_id")
+        activate_subscription(user_id)
 
-    # activer abonnement utilisateur ici
-
-    return "OK"
-
-def activate_subscription(user_id):
-
-    print(f"Utilisateur {user_id} activé")
+    return {"status": "ok"}

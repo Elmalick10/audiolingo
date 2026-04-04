@@ -1,5 +1,5 @@
 import requests
-from config.payment_config import *
+from backend.config.payment import *
 
 def get_access_token():
 

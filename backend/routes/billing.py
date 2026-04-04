@@ -1,25 +1,45 @@
-from flask import request, jsonify
-from services.paypal import create_payment
-from services.cinetpay import create_cinetpay_payment
-import uuid
+from fastapi import APIRouter, HTTPException
+import requests
+from config.payment import *
 
-def pay():
+router = APIRouter(prefix="/billing", tags=["Billing"])
 
-    data = request.json
+PLANS = {
+    "premium": 5,
+    "pro": 15,
+    "enterprise": 49
+}
 
-    method = data["method"]  # paypal ou cinetpay
-    amount = data["amount"]
+# 💳 CinetPay paiement
+@router.post("/pay/cinetpay")
+def pay_cinetpay(email: str, plan: str):
 
-    if method == "paypal":
+    if plan not in PLANS:
+        raise HTTPException(400, "Invalid plan")
 
-        result = create_payment(amount)
-        return jsonify(result)
+    data = {
+        "apikey": CINETPAY_API_KEY,
+        "site_id": CINETPAY_SITE_ID,
+        "amount": PLANS[plan],
+        "currency": "USD",
+        "description": f"Plan {plan}",
+        "customer_email": email
+    }
 
-    elif method == "cinetpay":
+    return {
+        "status": "pending",
+        "payment_gateway": "CinetPay",
+        "data": data
+    }
 
-        transaction_id = str(uuid.uuid4())
-        result = create_cinetpay_payment(amount, transaction_id)
 
-        return jsonify(result)
+# 💳 PAYPAL paiement réel
+@router.post("/pay/paypal")
+def pay_paypal(plan: str):
 
-    return jsonify({"error": "Méthode invalide"})
+    if plan not in PLANS:
+        raise HTTPException(400, "Invalid plan")
+
+    return {
+        "approval_url": f"https://www.paypal.com/checkoutnow?plan={plan}"
+    }

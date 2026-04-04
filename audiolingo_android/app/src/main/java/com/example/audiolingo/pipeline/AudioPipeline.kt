@@ -1,38 +1,15 @@
 package com.example.audiolingo.pipeline
 
-import com.example.audiolingo.ai.*
-import com.example.audiolingo.audio.*
+import com.example.audiolingo.ai.WhisperManager
+import com.example.audiolingo.tts.TTSManager
 
-class AudioPipeline(
-    whisper: WhisperONNX,
-    translator: TranslatorONNX,
-    tokenizer: Tokenizer
-) {
+class AudioPipeline {
 
-    private val streamer = AudioStreamer()
-    private val subtitleGen = SubtitleGenerator()
+    private val whisper = WhisperManager()
+    private val tts = TTSManager()
 
-    fun start() {
-
-        streamer.startStreaming { chunk ->
-
-            val floatAudio = chunk.map { it / 32768f }.toFloatArray()
-
-            val text = whisper.transcribe(floatAudio)
-
-            val tokens = tokenizer.encode(text)
-
-            val translated = translator.translate(tokens)
-
-            val subtitle = subtitleGen.generate(translated)
-
-            val rnnoise = RNNoiseProcessor()
-
-            val cleanAudio = rnnoise.process(rawAudio)
-
-            println("🎬 SUBTITLE: $subtitle")
-
-            val frameSize = 480
-        }
+    fun process(text: String) {
+        val result = whisper.transcribe(text)
+        tts.speak(result)
     }
 }

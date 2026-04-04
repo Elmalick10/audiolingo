@@ -1,43 +1,21 @@
 package com.example.audiolingo.video
 
-import android.graphics.BitmapFactory
-import android.util.Log
-import java.io.File
+import android.graphics.Bitmap
 
 class FaceAnimator {
 
-    fun animateFace(
-        image: File,
-        phonemes: List<String>,
-        output: File
-    ) {
-
-        Log.d("FaceAnimator", "Animation visage...")
-
-        val bitmap = BitmapFactory.decodeFile(image.path)
-
-        // 🎯 Simulation animation
-        phonemes.forEach {
-            Log.d("FaceAnimator", "Phonème: $it")
-        }
-
-        // 👀 Clignement yeux
+    fun animateFace(audioPath: String, faceImage: Bitmap): Bitmap {
+        // TODO: intégrer modèle IA (Wav2Lip / SadTalker)
         simulateBlink()
-
-        // 🧠 Micro expressions
-        simulateExpressions()
-
-        // 🎬 Export (simulation)
-        output.writeText("VIDEO_BINARY_DATA")
-
-        Log.d("FaceAnimator", "Export terminé")
+        simulateMicroExpressions()
+        return faceImage
     }
 
     private fun simulateBlink() {
-        Log.d("FaceAnimator", "Clignement yeux 👀")
+        println("👀 Clignement des yeux simulé")
     }
 
-    private fun simulateExpressions() {
-        Log.d("FaceAnimator", "Expressions visage 🙂😐😮")
+    private fun simulateMicroExpressions() {
+        println("🧠 Micro-expressions simulées")
     }
 }

@@ -7,5 +7,5 @@ python-multipart
 redis
 celery
 requests
-whisper
-torch
+sqlalchemy
+pydantic

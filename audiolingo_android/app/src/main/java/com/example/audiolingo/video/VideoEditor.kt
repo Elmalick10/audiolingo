@@ -1,10 +1,8 @@
-import com.arthenica.ffmpegkit.FFmpegKit
+package com.example.audiolingo.video
 
-fun exportVideo(input: String, output: String, subtitles: String) {
+class VideoEditor {
 
-    val cmd = "-i $input -vf subtitles=$subtitles -c:a copy $output"
-
-    FFmpegKit.executeAsync(cmd) { session ->
-        println("Export terminé : ${session.returnCode}")
+    fun generate() {
+        println("Video generation (server mode recommandé)")
     }
 }

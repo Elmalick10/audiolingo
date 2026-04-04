@@ -30,3 +30,7 @@ def get_active_subscription(user_id):
     """, (user_id,))
 
     return cur.fetchone()
+
+def activate_subscription(user_id):
+    print(f"Subscription activated for user {user_id}")
+    # TODO: update DB

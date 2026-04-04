@@ -1,45 +1,14 @@
-from flask import request, jsonify
-import sqlite3
 from fastapi import APIRouter
-import jwt
+from security.jwt import create_token
 
-router = APIRouter()
-
-SECRET = "SECRET_KEY"
+router = APIRouter(prefix="/auth")
 
 @router.post("/login")
+def login(email: str, password: str):
 
-def login():
-    token = jwt.encode({"user_id": 1}, SECRET, algorithm="HS256")
-    return {"token": token}
+    token = create_token({"email": email})
 
-def register():
-
-    data = request.json
-
-    conn = sqlite3.connect("C:\\audiolingo\\backend\\database\\db.sqlite")
-    cur = conn.cursor()
-
-    cur.execute("INSERT INTO users (email, password) VALUES (?, ?)",
-                (data["email"], data["password"]))
-
-    conn.commit()
-
-    return jsonify({"status": "ok"})
-
-def login():
-
-    data = request.json
-
-    conn = sqlite3.connect("C:\\audiolingo\\backend\\database\\db.sqlite")
-    cur = conn.cursor()
-
-    cur.execute("SELECT * FROM users WHERE email=? AND password=?",
-                (data["email"], data["password"]))
-
-    user = cur.fetchone()
-
-    if user:
-        return jsonify({"status": "ok", "user_id": user[0]})
-    else:
-        return jsonify({"status": "error", "message": "Invalid credentials"})
+    return {
+        "status": "ok",
+        "token": token
+    }

@@ -1,16 +1,12 @@
 from celery import Celery
-from services.celery_worker import app
-from services.email_service import send_email
-from services.retry_service import retry_payment
+from services.ai_pipeline import process_audio_pipeline
 
-@app.task
-def retry_payment_task(user_id):
-    retry_payment(user_id)
-@app.task
-def send_email_task(to, subject, msg):
-    send_email(to, subject, msg)
-app = Celery(
+celery = Celery(
     "audiolingo",
     broker="redis://localhost:6379/0",
     backend="redis://localhost:6379/0"
 )
+
+@celery.task
+def process_audio_task(audio_path):
+    return process_audio_pipeline(audio_path)

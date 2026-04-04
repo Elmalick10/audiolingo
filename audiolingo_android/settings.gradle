@@ -3,20 +3,21 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        }
     }
-}
+    rootProject.name = "audiolingo_android"
+    include ':app'
 
-dependencyResolutionManagement {
+    dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 
     repositories {
         google()
         mavenCentral()
 
-        // 🔥 AJOUT IMPORTANT
+        // 🔥 AJOUT CRITIQUE
+        maven { url "https://raw.githubusercontent.com/arthenica/ffmpeg-kit/main/prebuilt" }
+
         maven { url 'https://jitpack.io' }
     }
 }
-
-rootProject.name = "audiolingo_android"
-include ':app'

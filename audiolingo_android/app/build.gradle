@@ -6,6 +6,8 @@ plugins {
 android {
     namespace "com.example.audiolingo"
 
+    compileSdk 34   // 🔥 OBLIGATOIRE
+
     defaultConfig {
         applicationId "com.audiolingo.app"
         minSdk 24
@@ -60,30 +62,35 @@ android {
         }
     }
 }
-
 dependencies {
+
+    // Android
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
-    implementation "com.android.billingclient:billing:6.1.0"
+    implementation 'com.google.android.play:app-update:2.1.0'
+
+    // Réseau
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+    // Billing
     implementation "com.android.billingclient:billing-ktx:6.1.0"
 
-    // IA
+    // IA ONNX
     implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.17.0'
 
-    // Backend API
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    // Metadata vidéo
+    implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14'
 
-    // Réseau
-    implementation "com.squareup.okhttp3:okhttp:4.12.0"
+    // Firebase
+    implementation("com.google.firebase:firebase-storage:20.3.0")
 
-    // Play Store
+    // Update app
     implementation "com.google.android.play:app-update:2.1.0"
 
-    // Audio processing
-    implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14'
+    // JSON
+    implementation 'org.json:json:20231013'
+
 }

@@ -1,17 +1,46 @@
 package com.example.audiolingo.network
 
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import okhttp3.*
+import java.io.IOException
 
-object ApiClient {
+class ApiClient {
 
-    private const val BASE_URL = "https://TON_BACKEND.onrender.com/"
+    private val client = OkHttpClient()
+    private val BASE_URL = "https://audiolingo.onrender.com"
 
-    val instance: ApiService by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+    fun login(email: String, password: String) {
+
+        val request = Request.Builder()
+            .url("$BASE_URL/auth/login?email=$email&password=$password")
+            .post(RequestBody.create(null, ByteArray(0)))
             .build()
-            .create(ApiService::class.java)
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                println("❌ Erreur réseau")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                println("✅ Connecté au backend")
+            }
+        })
+    }
+
+    fun transcribeAudio(audio: ByteArray) {
+
+        val request = Request.Builder()
+            .url("$BASE_URL/ai/transcribe")
+            .post(RequestBody.create(null, audio))
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                println("❌ Erreur STT")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                println("🧠 Transcription OK")
+            }
+        })
     }
 }
