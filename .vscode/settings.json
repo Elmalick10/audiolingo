@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/audiolingo/whisper"
+    "cmake.sourceDirectory": "C:/audiolingo/whisper",
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }
